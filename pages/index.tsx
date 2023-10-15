@@ -11,10 +11,10 @@ const Home: NextPage = () => {
       {!isModalOpen && (
         <div className={styles.loginCard}>
           <h1>Wallet Abstraction</h1>
-          <p>Login with only a username and password!</p>
+          <p>Generate your crypto wallet with only a username and password! 😉</p>
           <button className= {styles.button} 
             onClick={() => setIsOpen(true)}>
-            Login
+            Enter
           </button>
         </div>
       )}

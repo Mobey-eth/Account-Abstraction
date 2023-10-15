@@ -75,7 +75,10 @@ import {
             </>
           ) : ownedNFTs && ownedNFTs.length > 0 ? (
             <>
-              <ThirdwebNftMedia metadata={ownedNFTs[0].metadata} />
+              <a href={`https://testnets.opensea.io/assets/mumbai/${nftCollection.toLowerCase()}/${
+                    ownedNFTs[0].metadata.id
+                  }`} target="_blank"><ThirdwebNftMedia metadata={ownedNFTs[0].metadata} /></a>
+              
               <p style={{ marginTop: "1rem"}}>You own {ownedNFTs[0].quantityOwned}</p>
               <p className={styles.description} style={{ fontWeight: "bold" }}>
                 A Mobi Whale!

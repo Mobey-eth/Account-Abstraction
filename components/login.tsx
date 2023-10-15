@@ -81,21 +81,23 @@ export const Login: React.FC<LoginProps> = ({ isOpen, onClose}) => {
                     onClick={onClose}
                     className={styles.closeButton}
                 >x</button>
-                <h1>Unilogin</h1>
-                <div className={styles.loginInput}>
-                    <input
+                <h1>Smart Wallet</h1>
+                <div >
+                    <input className={styles.loginInput}
                         type="text"
                         placeholder="Username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)} 
                     />
-                    <input
+                    <input className={styles.loginInput}
                         type="password"
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} 
                     />
-                    <button onClick={() => connectWallet()}>
+                    <button 
+                    className={styles.button}
+                    onClick={() => connectWallet()}>
                         Login
                     </button>
                 </div>
