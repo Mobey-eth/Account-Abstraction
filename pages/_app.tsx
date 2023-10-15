@@ -1,9 +1,7 @@
 import type { AppProps } from "next/app";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import "../styles/globals.css";
-import dotenv from 'dotenv';
-
-dotenv.config()
+import {THIRDWEB_API_KEY} from "../lib/constants"
 
 // This is the chain your dApp will work on.
 // Change this to the chain your app is built for.
@@ -14,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThirdwebProvider
       // clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
-      clientId= {process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
+      clientId= {THIRDWEB_API_KEY}
       activeChain={activeChain}
     >
       <Component {...pageProps} />
