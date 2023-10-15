@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css"
 import loadingLottie from "../assets/lottie/animation_lnlsf6wq.json"
 import LottieLoader from "react-lottie-loader";
@@ -22,11 +22,46 @@ export const Login: React.FC<LoginProps> = ({ isOpen, onClose}) => {
 
     if(!isOpen) return null;
 
+    useEffect(() => {
+        if (error) {
+          // If there's an error, automatically retry every 5 seconds
+          const retryInterval = setInterval(() => {
+            handleRetryLogin();
+          }, 6000);
+    
+          return () => {
+            clearInterval(retryInterval);
+          };
+        }
+      }, [error]);
+
     const handleOutsideClick = (e:React.MouseEvent<HTMLDivElement>) => {
         if (e.currentTarget === e.target) {
             onClose();
         }
     }
+
+    const handleRetryLogin = async () => {
+        try {
+          // Clear previous error and status
+          setError("");
+          setLoadingStatus("");
+    
+          setIsLoading(true);
+    
+          const wallet = await connectToSmartWallet(username, password, (status) =>
+            setLoadingStatus(status)
+          );
+    
+          const s = await wallet.getSigner();
+          setSigner(s);
+          setIsLoading(false);
+        } catch (e) {
+          setIsLoading(false);
+          console.error(e);
+          setError((e as any).message);
+        }
+      };
 
     const connectWallet = async () => {
         if (!username || !password) return;
