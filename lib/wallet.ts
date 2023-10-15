@@ -14,15 +14,38 @@ export function createSmartWallet(): SmartWallet {
     return smartWallet;
 }
 
+// export async function getWalletAddressForUser(
+//     sdk: ThirdwebSDK,
+//     username: string
+//   ): Promise<string> {
+//     const factory = await sdk.getContract(factoryAddress);
+//     const smartWalletAddress: string = await factory.call("accountOfUsername", [
+//       username,
+//     ]);
+//     return smartWalletAddress;
+// }
+
 export async function getWalletAddressForUser(
-    sdk: ThirdwebSDK,
-    username: string
-  ): Promise<string> {
-    const factory = await sdk.getContract(factoryAddress);
-    const smartWalletAddress: string = await factory.call("accountOfUsername", [
-      username,
-    ]);
-    return smartWalletAddress;
+  sdk: ThirdwebSDK,
+  username: string
+): Promise<string> {
+  const factory = await sdk.getContract(factoryAddress);
+  // Define a function to make the "accountOfUsername" call
+  const callAccountOfUsername = async (): Promise<string> => {
+    try {
+      const smartWalletAddress: string = await factory.call("accountOfUsername", [
+        username,
+      ]);
+      return smartWalletAddress;
+    } catch (error) {
+      // If the call fails, log the error and retry after 5 seconds
+      console.error("Error:", error);
+      await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait for 5 seconds
+      return callAccountOfUsername(); // Retry the call
+    }
+  };
+
+  return callAccountOfUsername();
 }
 
 export async function connectToSmartWallet(
