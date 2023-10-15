@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThirdwebProvider
       // clientId={process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID}
-      clientId= {THIRDWEB_API_KEY}
+      clientId= "b3cce49e1a0a665d809031e541d27022"
       activeChain={activeChain}
     >
       <Component {...pageProps} />
