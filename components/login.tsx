@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../styles/Home.module.css"
 import loadingLottie from "../assets/lottie/animation_lnlsf6wq.json"
 import LottieLoader from "react-lottie-loader";
@@ -22,19 +22,6 @@ export const Login: React.FC<LoginProps> = ({ isOpen, onClose}) => {
 
     if(!isOpen) return null;
 
-    useEffect(() => {
-        if (error) {
-          // If there's an error, automatically retry every 5 seconds
-          const retryInterval = setInterval(() => {
-            handleRetryLogin();
-          }, 6000);
-    
-          return () => {
-            clearInterval(retryInterval);
-          };
-        }
-      }, [error]);
-
     const handleOutsideClick = (e:React.MouseEvent<HTMLDivElement>) => {
         if (e.currentTarget === e.target) {
             onClose();
@@ -42,43 +29,51 @@ export const Login: React.FC<LoginProps> = ({ isOpen, onClose}) => {
     }
 
     const handleRetryLogin = async () => {
-        try {
-          // Clear previous error and status
-          setError("");
-          setLoadingStatus("");
+        let retryCount = 0; // Initialize retry count
     
-          setIsLoading(true);
+        const retryLogin = async () => {
+          if (retryCount <= 3) {
+            try {
+              // Clear previous error and status
+              setError("");
+              setLoadingStatus("");
     
-          const wallet = await connectToSmartWallet(username, password, (status) =>
-            setLoadingStatus(status)
-          );
+              setIsLoading(true);
     
-          const s = await wallet.getSigner();
-          setSigner(s);
-          setIsLoading(false);
-        } catch (e) {
-          setIsLoading(false);
-          console.error(e);
-          setError((e as any).message);
-        }
+              const wallet = await connectToSmartWallet(username, password, (status) =>
+                setLoadingStatus(status)
+              );
+    
+              const s = await wallet.getSigner();
+              setSigner(s);
+              setIsLoading(false);
+            } catch (e) {
+              setIsLoading(false);
+              console.error(e);
+              setError((e as any).message);
+    
+              // Retry after 5 seconds
+              setTimeout(() => {
+                retryLogin();
+              }, 5000);
+    
+              retryCount++; // Increment retry count
+            }
+          } else {
+            // Maximum retries reached, handle accordingly
+            setIsLoading(false);
+            setError("Maximum retries reached");
+          }
+        };
+    
+        retryLogin(); // Start the initial login attempt
       };
-
-    const connectWallet = async () => {
+    
+      const connectWallet = async () => {
         if (!username || !password) return;
-    try {
-      setIsLoading(true);
-      const wallet = await connectToSmartWallet(username, password, (status) =>
-        setLoadingStatus(status)
-      );
-      const s = await wallet.getSigner();
-      setSigner(s);
-      setIsLoading(false);
-    } catch (e) {
-      setIsLoading(false);
-      console.error(e);
-      setError((e as any).message);
-    }
-    }
+    
+        handleRetryLogin(); // Start the login attempt
+      };
 
     return username && signer ? (
         <>
