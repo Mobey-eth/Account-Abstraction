@@ -1,7 +1,9 @@
 import { ThirdwebSDK, isContractDeployed } from "@thirdweb-dev/sdk";
-import {THIRDWEB_API_KEY, chain, factoryAddress} from "./constants"
+import { chain, factoryAddress} from "./constants"
 import { LocalWallet, SmartWallet } from "@thirdweb-dev/wallets";
 
+
+const THIRDWEB_API_KEY = "b3cce49e1a0a665d809031e541d27022"
 export function createSmartWallet(): SmartWallet {
     const smartWallet = new SmartWallet({
       chain: chain,
