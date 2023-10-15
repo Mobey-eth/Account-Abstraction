@@ -94,10 +94,10 @@ export const Login: React.FC<LoginProps> = ({ isOpen, onClose}) => {
         
     ) : error ? (
         <div>
-            <p>Error</p>
-            <button onClick={() => setError("")}>
+            <p>Please Wait... Fetching</p>
+            {/* <button onClick={() => setError("")}>
                 Try Again
-            </button>
+            </button> */}
         </div>
         
     ) : (
