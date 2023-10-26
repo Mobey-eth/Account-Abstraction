@@ -10,6 +10,11 @@
   
 }
 
+.lottieTwo{
+  max-width: max-content;
+  overflow: none,
+}
+
 @media (min-width: 500px) {
   .container {
     width: 500px;
@@ -79,29 +84,30 @@
 }
 
 .closeButton{
-  width: 10%;
+  width: 7.5%;
   height: 1.4rem;
   border-radius: 5px;
   border: 0;
   font-size: 1rem;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  background: -webkit-linear-gradient( #6a00a9, #eb0093);
-  /* background: #6a00a9; */
+  background: #6a00a9;
   color: #fff;
   text-align: center;
   justify-self: left ;
   align-items: center;
   font-weight: 600;
   cursor: pointer;
+  display: none;
 
   position: absolute;
   top: 0;
-  right: 5%;
+  right: 2%;
 }
 
 .closeButton:hover{
-  background: #6a00a9;
+
+  background: -webkit-linear-gradient( #6a00a9, #eb0093);
 }
 
 .description{
@@ -317,4 +323,23 @@
 
 .logo img {
   filter: invert(1);
+}
+
+.lottieTwo{
+  width: "440px"
+}
+
+.closeButton{
+  width: 10%;
+  height: 1.4rem;
+  cursor: pointer;
+ 
+  position: absolute;
+  top: 0;
+  right: 5%;
+}
+@media (min-width: 768px) {
+  .closeButton{
+    display: block;
+  }
 }

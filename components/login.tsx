@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/Home.module.css"
 import loadingLottie from "../assets/lottie/animation_lnlsf6wq.json"
+import loadinLottie2 from "../assets/lottie/animation_lnlsglcz_2.json"
 import LottieLoader from "react-lottie-loader";
 import { connectToSmartWallet } from "../lib/wallet";
 import { Connected } from "./connected";
@@ -32,7 +33,7 @@ export const Login: React.FC<LoginProps> = ({ isOpen, onClose}) => {
         let retryCount = 0; // Initialize retry count
     
         const retryLogin = async () => {
-          if (retryCount <= 3) {
+          if (retryCount <= 5) {
             try {
               // Clear previous error and status
               setError("");
@@ -82,10 +83,7 @@ export const Login: React.FC<LoginProps> = ({ isOpen, onClose}) => {
     ) : isLoading ? (
         
             <div className={styles.card}>
-                <div
-                    style={{
-                        width: "440px"
-                    }}
+                <div className="lottieTwo"
                 >
                     <LottieLoader animationData={loadingLottie}/>
                 </div>
@@ -94,7 +92,14 @@ export const Login: React.FC<LoginProps> = ({ isOpen, onClose}) => {
         
     ) : error ? (
         <div>
-            <p>Please Wait... Fetching</p>
+            <div className={styles.card}>
+                <div className="lottieTwo">
+                    <LottieLoader animationData={loadinLottie2}/>
+                    <p>Please Wait...</p>
+                </div>
+
+            </div>
+            
             {/* <button onClick={() => setError("")}>
                 Try Again
             </button> */}
