@@ -1,3 +1,38 @@
+# Wallet Abstraction Demo
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Mobey-eth/Account-Abstraction/blob/main/LICENSE)
+
+## Overview
+
+This repository provides a solution for account abstraction, allowing users to create an EOA (Externally Owned Account) wallet with just a username and password. Users can also mint a Mobi: Whale Collection NFT on the Polygon Mumbai Testnet using this platform.
+
+### Features
+
+- Create an EOA wallet with a username and password.
+- Mint Mobi: Whale Collection NFTs on the Polygon Mumbai Testnet.
+
+## Usage
+
+To get started, simply follow these steps:
+
+1. Visit the project demo website [Here](https://mobi-wallet-abstraction.vercel.app/).
+
+2. Sign up with a username and password.
+
+3. Once logged in, you can claim your free and gasless Mobi: Whale Collection NFT.
+
+Please note that the usage of this project is primarily web-based, and there's no current implementation of account recovery so please **DO not send real funds to the Wallet** as this is for testing purposes only.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+If you have any questions or need further assistance, feel free to contact us through [E-mail](chantler.aob@gmail.com).
+
+Enjoy exploring and claiming your NFT!
+
 ## Getting Started
 
 Create a project using this example:
@@ -21,20 +56,3 @@ Deploy a copy of your application to IPFS using the following command:
 
 ```bash
 yarn deploy
-```
-
-## Learn More
-
-To learn more about thirdweb and Next.js, take a look at the following resources:
-
-- [thirdweb React Documentation](https://docs.thirdweb.com/react) - learn about our React SDK.
-- [thirdweb TypeScript Documentation](https://docs.thirdweb.com/typescript) - learn about our JavaScript/TypeScript SDK.
-- [thirdweb Portal](https://docs.thirdweb.com) - check our guides and development resources.
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Templates](https://thirdweb.com/templates)
-
-You can check out [the thirdweb GitHub organization](https://github.com/thirdweb-dev) - your feedback and contributions are welcome!
-
-## Join our Discord!
-
-For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
